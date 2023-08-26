@@ -5,7 +5,8 @@ import { ImageGallery } from './ImageGallery/ImageGallery';
 import { Button } from './Button/Button';
 import { Loader } from './Loader/Loader';
 import { fetchHitsByQuery } from './services/api';
-
+import { Searchbar } from './Searchbar/Searchbar';
+import { Modal } from './Modal/Modal';      
 
 
 export const App = () => {

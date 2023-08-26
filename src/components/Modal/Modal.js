@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import s from '../Modal/Modal.module.css';
 
@@ -37,7 +37,6 @@ Modal.propTypes = {
   largeImageURL: PropTypes.string.isRequired,
 };
 
-// export default Modal;
-
+export default Modal;
 
 
