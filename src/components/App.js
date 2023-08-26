@@ -66,7 +66,7 @@ export const App = () => {
 
   return (
     <div className={s.App}>
-      <Searchbar onSubmit={onSubmit} />
+      <Searchbar changeQuery={onSubmit} />
       <ImageGallery images={images} onClickImage={onClickImage} />
       {isLoading && <Loader />}
       {showBtn && <Button onNextPage={onNextPage} />}
@@ -77,4 +77,6 @@ export const App = () => {
 };
 
 export default App;
+
+
 
