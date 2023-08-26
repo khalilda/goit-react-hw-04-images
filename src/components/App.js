@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
-import { Notify } from "notiflix";
+import { useState, useEffect } from 'react';
+import { Notify } from 'notiflix';
 import s from './App.module.css';
-import Searchbar from "./Searchbar/Searchbar";
-import { ImageGallery } from "./ImageGallery/ImageGallery";
-import { Button } from "./Button/Button";
-import { Loader } from "./Loader/Loader";
-import { fetchHitsByQuery } from "./services/api";
-import { Modal } from "./Modal/Modal";
+import { ImageGallery } from './ImageGallery/ImageGallery';
+import { Button } from './Button/Button';
+import { Loader } from './Loader/Loader';
+import { fetchHitsByQuery } from './services/api';
+
 
 
 export const App = () => {
@@ -18,9 +17,9 @@ export const App = () => {
   const [showModal, setShowModal] = useState(false);
   const [largeImageURL, setLargeImageURL] = useState('');
 
-  const onSubmit = e => {
-    e.preventDefault();
-    setQuery(e.target.search.value);
+  const onSubmit = query => {
+
+    setQuery(query.target.setSearch);
     setIsLoading(true);
     setImages([]);
     setPage(1);
@@ -28,7 +27,6 @@ export const App = () => {
 
   const onNextPage = () => {
     setPage(prevState => prevState + 1);
-    setIsLoading(true);
   };
 
   const onClickImage = url => {
@@ -45,24 +43,23 @@ export const App = () => {
     if (!query) return;
 
     const fetchGallery = async searchQuery => {
-      try {
-        const response = await fetchHitsByQuery(searchQuery, page);
-        setImages(prevState => [...prevState, ...response]);
-        if (response.length < 12) {
-          setShowBtn(false);
+        try {
+          const response = await fetchHitsByQuery(searchQuery, page);
+   if (response.length === 0) {
+            Notify.failure('No matches found!');
+  return
+          }
+          setImages(prevState => [...prevState, ...response]);
+   setShowBtn(response.length >= 12);
+  
+         
+         
+        } catch (error) {
+          console.log('Error');
+        } finally {
+          setIsLoading(false);
         }
-        if (response.length === 12) {
-          setShowBtn(true);
-        }
-        if (response.length === 0) {
-          Notify.failure('No matches found!');
-        }
-      } catch (error) {
-        console.log('Error');
-      } finally {
-        setIsLoading(false);
-      }
-    };
+      };
     fetchGallery(query, page);
   }, [page, query]);
 

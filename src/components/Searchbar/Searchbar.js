@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import PropTypes from 'prop-types';
 import s from './Searchbar.module.css';
 
@@ -35,4 +35,4 @@ Searchbar.propTypes = {
   changeQuery: PropTypes.func,
 };
 
-export default Searchbar;
+// export default Searchbar;
