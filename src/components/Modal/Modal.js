@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import s from '../Modal/Modal.module.css';
 
-const Modal = ({ onModalClose, largeImageURL }) => {
+export const Modal = ({ onModalClose, largeImageURL }) => {
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.keyCode === 27) {

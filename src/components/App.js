@@ -6,7 +6,7 @@ import { Button } from './Button/Button';
 import { Loader } from './Loader/Loader';
 import { fetchHitsByQuery } from './services/api';
 import { Searchbar } from './Searchbar/Searchbar';
-import { Modal } from './Modal/Modal';      
+import { Modal } from './Modal/Modal';
 
 
 export const App = () => {
@@ -19,11 +19,11 @@ export const App = () => {
   const [largeImageURL, setLargeImageURL] = useState('');
 
   const onSubmit = query => {
-
-    setQuery(query.target.setSearch);
-    setIsLoading(true);
+    setQuery(query);
     setImages([]);
     setPage(1);
+    setIsLoading(true);
+    setShowBtn(false);
   };
 
   const onNextPage = () => {
@@ -71,8 +71,10 @@ export const App = () => {
       {isLoading && <Loader />}
       {showBtn && <Button onNextPage={onNextPage} />}
       {showModal && (
-        <Modal largeImageURL={largeImageURL} onModalClose={onModalClose} />
-      )}
+        <Modal onModalClose={onModalClose} largeImageURL={largeImageURL} />)}
     </div>
   );
 };
+
+export default App;
+

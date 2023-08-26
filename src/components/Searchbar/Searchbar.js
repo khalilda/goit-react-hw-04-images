@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import s from './Searchbar.module.css';
 
-const Searchbar = ({ changeQuery }) => {
+export const Searchbar = ({ changeQuery }) => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleSubmit = e => {
