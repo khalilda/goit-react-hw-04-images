@@ -8,9 +8,6 @@ export const Modal = ({ onModalClose, largeImageURL }) => {
       if (e.keyCode === 27) {
         return onModalClose();
       }
-      if (e.target === e.currentTarget) {
-        onModalClose();
-      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -20,11 +17,14 @@ export const Modal = ({ onModalClose, largeImageURL }) => {
     };
   }, [onModalClose]);
 
-  
-
+  const handleOverlayClick = e => {
+    if (e.target === e.currentTarget) {
+      onModalClose();
+    }
+  };
 
   return (
-    <div className={s.Overlay} onClick={onModalClose}>
+    <div className={s.Overlay} onClick={handleOverlayClick}>
       <div className={s.Modal}>
         <img src={largeImageURL} alt="" />
       </div>
@@ -38,5 +38,3 @@ Modal.propTypes = {
 };
 
 export default Modal;
-
-

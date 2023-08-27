@@ -8,7 +8,6 @@ import { fetchHitsByQuery } from './services/api';
 import { Searchbar } from './Searchbar/Searchbar';
 import { Modal } from './Modal/Modal';
 
-
 export const App = () => {
   const [images, setImages] = useState([]);
   const [query, setQuery] = useState('');
@@ -44,23 +43,20 @@ export const App = () => {
     if (!query) return;
 
     const fetchGallery = async searchQuery => {
-        try {
-          const response = await fetchHitsByQuery(searchQuery, page);
-   if (response.length === 0) {
-            Notify.failure('No matches found!');
-  return
-          }
-          setImages(prevState => [...prevState, ...response]);
-   setShowBtn(response.length >= 12);
-  
-         
-         
-        } catch (error) {
-          console.log('Error');
-        } finally {
-          setIsLoading(false);
+      try {
+        const response = await fetchHitsByQuery(searchQuery, page);
+        if (response.length === 0) {
+          Notify.failure('No matches found!');
+          return;
         }
-      };
+        setImages(prevState => [...prevState, ...response]);
+        setShowBtn(response.length >= 12);
+      } catch (error) {
+        console.log('Error');
+      } finally {
+        setIsLoading(false);
+      }
+    };
     fetchGallery(query, page);
   }, [page, query]);
 
@@ -71,12 +67,10 @@ export const App = () => {
       {isLoading && <Loader />}
       {showBtn && <Button onNextPage={onNextPage} />}
       {showModal && (
-        <Modal onModalClose={onModalClose} largeImageURL={largeImageURL} />)}
+        <Modal onModalClose={onModalClose} largeImageURL={largeImageURL} />
+      )}
     </div>
   );
 };
 
 export default App;
-
-
-
