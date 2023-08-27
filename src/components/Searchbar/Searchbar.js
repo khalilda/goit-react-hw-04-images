@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import s from './Searchbar.module.css';
 
-export const Searchbar = ({ changeQuery }) => {
+export const Searchbar = ({ onSubmit }) => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
-    changeQuery(searchValue);
+    onSubmit(searchValue);
   };
 
   return (

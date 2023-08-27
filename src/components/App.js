@@ -66,7 +66,7 @@ export const App = () => {
 
   return (
     <div className={s.App}>
-      <Searchbar changeQuery={onSubmit} />
+      <Searchbar onSubmit={onSubmit} />
       <ImageGallery images={images} onClickImage={onClickImage} />
       {isLoading && <Loader />}
       {showBtn && <Button onNextPage={onNextPage} />}
